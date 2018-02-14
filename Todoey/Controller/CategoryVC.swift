@@ -36,7 +36,6 @@ class CategoryVC: UITableViewController {
     
     //MARK: - TableView Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "goToItems", sender: self)
     }
     
@@ -51,7 +50,7 @@ class CategoryVC: UITableViewController {
     func saveCategories() {
         
         do {
-            try self.context.save()
+            try context.save()
         } catch {
             print("Error while saving the category \(error)")
         }
@@ -63,7 +62,7 @@ class CategoryVC: UITableViewController {
         let request: NSFetchRequest<Categories> = Categories.fetchRequest()
         
         do {
-            try categories = try context.fetch(request)
+            categories = try context.fetch(request)
         } catch {
             print("Error loading categories")
         }
